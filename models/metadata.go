@@ -1,6 +1,18 @@
 package models
 
 type Metadata struct {
+	Dependencies struct {
+		Type   string `json:"type"`
+		Values []struct {
+			Name   string `json:"name"`
+			Values []struct {
+				ID          string `json:"id"`
+				Name        string `json:"name"`
+				Description string `json:"description"`
+			} `json:"values"`
+		} `json:"values"`
+	} `json:"dependencies"`
+
 	Type struct {
 		Type    string `json:"type"`
 		Default string `json:"default"`

@@ -120,9 +120,18 @@ func main() {
 	}, &javaVersion)
 
 	var dependencies []string
+	var options []string
+
+	for _, dep := range meta.Dependencies.Values {
+		mainDep := dep.Values
+		for _, m := range mainDep {
+			options = append(options, m.ID)
+		}
+	}
+
 	survey.AskOne(&survey.MultiSelect{
 		Message: "Select dependencies:",
-		Options: []string{"web", "data-jpa", "security", "devtools", "lombok", "websocket", "data-mongodb", "graphql", "mysql"},
+		Options: options,
 		Default: []string{"web"},
 	}, &dependencies)
 
